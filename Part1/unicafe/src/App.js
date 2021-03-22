@@ -6,23 +6,43 @@ const Button = (props) => {
 
 const Statistic = (props) => {
   if(props.name === "positive")
-    return <p>{props.name} {props.number} % </p> 
+    return <>
+    <td>{props.name} </td>
+    <td>{props.number} %</td>
+    </>
   else
-    return <p>{props.name} {props.number}</p>
+    return <>
+    <td>{props.name} </td>
+    <td>{props.number}</td>
+    </>
 }
 
 const Statistics = (props) => {
   if(props.good===0 && props.bad===0 && props.neutral===0)
     return <p>No feedback given</p>
   else
-    return  <> 
-              <Statistic name = "Good" number = {props.good} />
-              <Statistic name = "Neutral" number = {props.neutral} />
-              <Statistic name = "Bad" number = {props.bad} />
-              <Statistic name = "all" number = {props.good+props.neutral+props.bad}/>
-              <Statistic name = "average" number = {(props.good-props.bad)/(props.good+props.bad+props.neutral)}/>
-              <Statistic name ="positive" number={props.good/(props.good+props.bad+props.neutral)*100}/>
-            </>
+    return  <table>
+      <tbody>
+        <tr>
+          <Statistic name = "Good" number = {props.good} />
+        </tr>
+        <tr>
+          <Statistic name = "Neutral" number = {props.neutral} />
+        </tr>
+        <tr>
+          <Statistic name = "Bad" number = {props.bad} />
+        </tr>
+        <tr>
+          <Statistic name = "all" number = {props.good+props.neutral+props.bad}/>
+        </tr>
+        <tr>
+          <Statistic name = "average" number = {(props.good-props.bad)/(props.good+props.bad+props.neutral)}/>
+        </tr>
+        <tr>
+          <Statistic name ="positive" number={props.good/(props.good+props.bad+props.neutral)*100}/>
+        </tr>
+      </tbody>
+    </table>
 }
 
 
@@ -46,8 +66,6 @@ const App = () => {
       <Button handleClick = {handleClickBad} name="Bad"/>
       <h1>statistics</h1>
       <Statistics good={good} bad={bad} neutral={neutral} />
-
-      
     </div>
   )
 }
