@@ -15,18 +15,30 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [points, setPoints] = useState(new Array(6).fill(0))
 
   const handleClick = () => {
     let randomNum = Math.round((Math.random()*10)%6)
     setSelected(randomNum)
   }
 
+  const vote = () => {
+    const copy = {...points}
+    copy[selected] += 1
+    setPoints(copy)
+  }
+
   return (
     <>
     <div>
       {anecdotes[selected]}
+      <p>has {points[selected]} votes</p>
     </div>
-    <Button name="next anectode" handleClick={handleClick}/>
+    <div>
+      <Button name="next anectode" handleClick={handleClick}/>
+      <Button name="vote" handleClick={vote} />
+    </div>
+    
     </>
   )
 }
