@@ -16,6 +16,7 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
   const [points, setPoints] = useState(new Array(6).fill(0))
+  const [maxAnectode, setMaxAnectode] = useState(0)
 
   const handleClick = () => {
     let randomNum = Math.round((Math.random()*10)%6)
@@ -25,18 +26,24 @@ const App = () => {
   const vote = () => {
     const copy = {...points}
     copy[selected] += 1
+    if(copy[selected]>copy[maxAnectode])
+      setMaxAnectode(selected)
     setPoints(copy)
   }
 
   return (
     <>
     <div>
+      <h1>Anectode of the day</h1>
       {anecdotes[selected]}
       <p>has {points[selected]} votes</p>
     </div>
     <div>
       <Button name="next anectode" handleClick={handleClick}/>
       <Button name="vote" handleClick={vote} />
+      <h1>Anectode with most votes</h1>
+      {anecdotes[maxAnectode]}
+      <p>has {points[maxAnectode]} votes</p>
     </div>
     
     </>
