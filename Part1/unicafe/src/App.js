@@ -5,7 +5,10 @@ const Button = (props) => {
 }
 
 const Statistic = (props) => {
-  return <p>{props.name} {props.number}</p>
+  if(props.name === "positive")
+    return <p>{props.name} {props.number} % </p> 
+  else
+    return <p>{props.name} {props.number}</p>
 }
 
 
@@ -33,7 +36,7 @@ const App = () => {
       <Statistic name = "Bad" number = {bad} />
       <Statistic name = "all" number = {good+neutral+bad}/>
       <Statistic name = "average" number = {(good-bad)/(good+bad+neutral)}/>
-      <p>positive {good/(good+bad+neutral)*100} % </p> 
+      <Statistic name ="positive" number={good/(good+bad+neutral)*100}/>
     </div>
   )
 }
