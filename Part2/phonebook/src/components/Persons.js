@@ -5,7 +5,7 @@ import Person from './Person'
 const Persons = (props) => {
     return(
         <ul>
-            {props.personsToShow.map((person) => <Person person={person} /> )}
+            {props.personsToShow.map((person) => <Person key={person.name} person={person} /> )}
         </ul>
     )
 }
