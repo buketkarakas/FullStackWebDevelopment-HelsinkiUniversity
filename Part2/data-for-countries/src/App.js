@@ -1,44 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
-const ExtendedCountry = (props) => {
-
-  return (
-    <>
-    <h1>{props.country.name}</h1>
-    <p>capital {props.country.capital}</p>
-    <p>population {props.country.population}</p>
-    <h2>languages</h2>
-    <ul>
-      {props.country.languages.map((language)=><li key = {language.name}>{language.name}</li>)}
-    </ul>
-    <img src={props.country.flag} alt="Flag" width="200" height="200"/>
-    </>
-  )
-
-}
+import Filter from './components/Filter'
 
 
-const CountryResult = (props) => {
-  console.log(props.countries)
-  if(props.countries.length === 1){
-    return <ExtendedCountry country = {props.countries[0]}/>
-  }
-  else if(props.countries.length === 0){
-    return <></>
-  }
-  else if(props.countries.length > 10){
-    return <p>too many matches, specify filter more</p>
-  }
-  else{
-    console.log("else case")
-    return (
-      <ul>
-        {props.countries.map(country => <li key = {country.name}>{country.name}</li>)}
-      </ul>
-    )
-  }
-}
+
 
 function App() {
   const [countries, setCountries] = useState([])
@@ -58,6 +23,9 @@ function App() {
 
   const handleFilterChange = (event) => setFilter(event.target.value)
 
+  const handleShowClick = (country) => setFilter(country.name)
+  
+
   
   return (
     <div>
@@ -65,7 +33,7 @@ function App() {
         find countries <input value={filter} onChange={handleFilterChange}/>
       </div>
       <div>
-        <CountryResult countries={countriesToShow}/>
+        <Filter countries={countriesToShow} handleClick={handleShowClick}/>
       </div>
       
     </div>
