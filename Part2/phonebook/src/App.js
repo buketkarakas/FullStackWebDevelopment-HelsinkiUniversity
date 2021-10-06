@@ -37,6 +37,10 @@ const App = () => {
       .then(returnedPerson => {
         setPersons(persons.concat(returnedPerson))
       })
+      .catch( error => {
+        alert("Something went wrong :(")
+        }
+      )
     }
     else{
       const result = window.confirm(`${personToBeSearched.name} is already added to phonebook, replace the old number with a new one?`)
@@ -45,6 +49,9 @@ const App = () => {
         personService.update(updatedPerson)
         .then(returnedPerson => {
           setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson))
+        })
+        .catch(error => {
+          alert("Something went wrong :( ")
         })
       }
     }
@@ -58,6 +65,9 @@ const App = () => {
       const result = window.confirm(`Delete ${persons.find(person => person.id === personId).name}?`)
       if (result)
         setPersons(persons.filter(person => person.id !== personId))
+    })
+    .catch(error => {
+      alert("Something went wrong :(")
     })
   }
 
