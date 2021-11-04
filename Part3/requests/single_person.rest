@@ -1,4 +1,4 @@
-GET http://localhost:3001/api/persons/1
+GET http://localhost:3001/api/persons/8380
 
 ###
 
@@ -10,6 +10,6 @@ POST  http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name": "Buket Karakas",
-    "number": "40-393-9705"
+    "name": "Berk Turetken",
+    "number": "40-393-970"
 }
