@@ -44,7 +44,13 @@ const App = () => {
         
       })
       .catch( error => {
-        alert("Something went wrong :(")
+        console.log("This is error:"+error)
+        setNotificationMessage(error.response.data.error)
+        setIsError(true)
+        setTimeout(() => {
+          setIsError(false)
+          setNotificationMessage(null)}, 3000)
+        
         }
       )
     }
