@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "author": "Buket Karakaş",
+    "title": "Aalto University",
+    "url": "Lalalala",
+    "upvotes": 10
+}
