@@ -76,6 +76,38 @@ test('a blog without likes can be added', async () => {
   
 })
 
+test('a blog without title will not be be added', async () => {
+  const newBlog = {
+    author: 'Berk dasd',
+    url: 'wwwwww',
+    likes: 10
+  }
+
+  const response = await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400)
+    .expect('Content-Type', /application\/json/)
+
+  
+})
+
+test('a blog without url will not be be added', async () => {
+  const newBlog = {
+    title:"Story of my life",
+    author: 'Berk dasd',
+    likes: 10
+  }
+
+  const response = await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400)
+    .expect('Content-Type', /application\/json/)
+
+  
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
