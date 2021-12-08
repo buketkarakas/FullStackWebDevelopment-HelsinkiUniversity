@@ -25,6 +25,16 @@ test('blogs are returned as json', async () => {
     expect(response.body).toHaveLength(helper.initialBlogs.length)
 })
 
+test('blogs have id property', async () => {
+  const response = await api.get('/api/blogs')
+  .expect(200)
+  .expect('Content-Type', /application\/json/)
+  
+  for(blog of response.body){
+    expect(blog.id).toBeDefined()
+  }
+})
+
 test('a valid blog can be added', async () => {
   const newBlog = {
     title: 'my story',
