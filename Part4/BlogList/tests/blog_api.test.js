@@ -43,7 +43,7 @@ test('a valid blog can be added', async () => {
     likes: 85
   }
 
-  await api
+  await apivalid
     .post('/api/blogs')
     .send(newBlog)
     .expect(201)
@@ -57,6 +57,23 @@ test('a valid blog can be added', async () => {
   expect(contents).toContain(
     'my story'
   )
+})
+
+test('a blog without likes can be added', async () => {
+  const newBlog = {
+    title: 'my toy story',
+    author: 'Berk Karakaş',
+    url: 'wwwwww'
+  }
+
+  const response = await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  expect(response.body.likes).toBe(0)
+  
 })
 
 afterAll(() => {
