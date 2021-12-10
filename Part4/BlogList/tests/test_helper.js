@@ -55,7 +55,24 @@ const initialBlogs = [
     return blogs.map(blog => blog.toJSON())
   }
 
+  const createNewNote = async () => {
+    const newBlog = {
+        title: 'temp blog',
+        author: 'Buket Karakaş',
+        url: 'wwwwww',
+        likes: 85
+      }
+    const blog = new Blog(newBlog)
+    await blog.save()
+
+    return blog._id.toString()
+  }
+
+
+
   module.exports = {
       initialBlogs,
-      blogsInDb
+      blogsInDb,
+      createNewNote,
+      createNewNote
   }

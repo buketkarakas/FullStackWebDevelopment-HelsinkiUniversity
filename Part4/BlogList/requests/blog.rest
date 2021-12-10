@@ -7,3 +7,21 @@ Content-Type: application/json
     "url": "dsadasd",
     "upvotes": 10
 }
+
+###
+
+DELETE http://localhost:3003/api/blogs/61aa82a3ee8ba3e24f039bb5
+Content-Type: application/json
+
+###
+
+PUT http://localhost:3003/api/blogs/61ab6c34e62aebe95b3195a4
+Content-Type: application/json
+
+{
+    "title": "Hello world",
+    "author": "Berk Karakaş",
+    "url": "121",
+    "likes": 10
+}
+
