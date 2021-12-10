@@ -1,19 +1,19 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJ1a2V0a2FyYWthcyIsImlkIjoiNjFiM2I1MmEzMTg4NWZlMTI4MzQ1YWYwIiwiaWF0IjoxNjM5MTc0MzI5LCJleHAiOjE2MzkxNzc5Mjl9.jZf53JytfFs-f3VsDNN2bCQnJFaF814sdlAny0ADamQ
 
 {
-    "author": "Buket Karakaş",
-    "title": "Sabanci University",
+    "author": "Buket ghjghjgh",
+    "title": "dhjghjgh University",
     "url": "dsadasd",
-    "likes": 20,
-    "user": "61b3512e94ca6b1f6ce6277e"
-}
+    "likes": 20
+    }
 
 ###
 
-DELETE http://localhost:3003/api/blogs/61b353a24e155134cbb761ca
+DELETE http://localhost:3003/api/blogs/61b3c346aff85e26e2f95c62
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJ1a2V0a2FyYWthcyIsImlkIjoiNjFiM2I1MmEzMTg4NWZlMTI4MzQ1YWYwIiwiaWF0IjoxNjM5MTY3MzA1LCJleHAiOjE2MzkxNzA5MDV9.8sh95P4hTilhJfmR4PlTah1v4LVrG00IbPrusIZlMAk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJ1a2V0a2FyYWthcyIsImlkIjoiNjFiM2I1MmEzMTg4NWZlMTI4MzQ1YWYwIiwiaWF0IjoxNjM5MTc1OTIwLCJleHAiOjE2MzkxNzk1MjB9.YphLKECAfTftA25qi2nSa2OulT2DB8xBIAOS1DqZEPA
 
 ###
 
