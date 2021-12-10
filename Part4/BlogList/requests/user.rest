@@ -5,5 +5,5 @@ Content-Type: application/json
     "blogs": [],
     "username": "root",
     "name": "Superuser",
-    "password": "salainen"
+    "password": "s"
 }
