@@ -2,10 +2,11 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "author": "Berk Karakaş",
+    "author": "Buket Karakaş",
     "title": "Sabanci University",
     "url": "dsadasd",
-    "upvotes": 10
+    "likes": 20,
+    "user": "61b3512e94ca6b1f6ce6277e"
 }
 
 ###
