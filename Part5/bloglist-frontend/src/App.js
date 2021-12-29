@@ -1,0 +1,57 @@
+import React, { useState, useEffect } from 'react'
+import Blog from './components/Blog'
+import blogService from './services/blogs'
+import LoginForm from './components/LoginForm'
+import Notification from './components/Notification'
+import BlogForm from './components/BlogForm'
+
+const App = () => {
+  const [blogs, setBlogs] = useState([])
+  const [message, setMessage] = useState(null)
+  const [errorStatus, setErrorStatus] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('') 
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    blogService.getAll().then(blogs =>
+      setBlogs( blogs )
+    )  
+  }, [])
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
+    if(loggedUserJSON){
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      blogService.setToken(user.token)
+    }
+  }, [])
+
+  const logout = () => { 
+    window.localStorage.clear()
+    setUser(null)
+  }
+
+  return (
+    <div>
+      
+      <h2>blogs</h2>
+      <Notification message={message} errorStatus={errorStatus} />
+      {user === null ?
+      <LoginForm  setErrorMessage = {setMessage} setErrorStatus={setErrorStatus} user={user} username={username} password={password} setUser={setUser} setPassword={setPassword} setUsername={setUsername}/> :
+      <div>
+        <p>{user.name} logged in</p>
+        <button onClick={logout}>logout</button>
+        <BlogForm setMessage={setMessage} setErrorStatus={setErrorStatus} blogs={blogs} setBlogs={setBlogs}/>
+        {blogs.map(blog =>
+          <Blog key={blog.id} blog={blog} />
+        )
+        }
+      </div>
+      }
+    </div>
+  )
+}
+
+export default App

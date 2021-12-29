@@ -1,11 +1,11 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJ1a2V0a2FyYWthcyIsImlkIjoiNjFiM2I1MmEzMTg4NWZlMTI4MzQ1YWYwIiwiaWF0IjoxNjM5MTc0MzI5LCJleHAiOjE2MzkxNzc5Mjl9.jZf53JytfFs-f3VsDNN2bCQnJFaF814sdlAny0ADamQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjYxYzljODFhNDc1YWJhYmZiNDllNmI2ZSIsImlhdCI6MTY0MDYyNTg1MywiZXhwIjoxNjQwNjI5NDUzfQ.H5d5cqDp16dFjejr5lCIjq01ov5OOzszUeCXBxBo4L8
 
 {
-    "author": "Buket ghjghjgh",
-    "title": "dhjghjgh University",
-    "url": "dsadasd",
+    "author": "gdfgdfgdfg ghjghjgh",
+    "title": "dhjghjgh helloooo",
+    "url": "lalaland",
     "likes": 20
     }
 
