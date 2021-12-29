@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-const Blog = ({blog}) =>{
+import blogService from '../services/blogs'
+const Blog = ({blog, setBlogs, blogs}) =>{
   const [detailsVisible, setDetailsVisible] = useState(false)
   const blogStyle = {
     paddingTop: 10,
@@ -7,6 +8,23 @@ const Blog = ({blog}) =>{
     border: 'solid',
     borderWidth: 1,
     marginBottom: 5
+  }
+
+  const likeClick = async (event) => {
+    event.preventDefault()
+    const newBlog = {
+      ...blog,
+      likes: blog.likes+1
+    }
+    const  blogID = blog.id
+    await blogService.update(newBlog, blog.id)
+    const updatedBlog = {
+      ...newBlog,
+      blogID
+    }
+    setBlogs(
+      blogs.map((tempBlog) => (blog.id === tempBlog.id ? updatedBlog : tempBlog))
+    )
   }
 
   const buttonLabel = detailsVisible ? "hide": "view"
@@ -21,7 +39,7 @@ const Blog = ({blog}) =>{
         {blog.url}
       </div>
       <div style={displayDetails}>
-        likes: {blog.likes} <button onClick={null}>like</button>
+        likes: {blog.likes} <button onClick={likeClick}>like</button>
       </div>
       <div style={displayDetails}>
         {blog.user.name}
