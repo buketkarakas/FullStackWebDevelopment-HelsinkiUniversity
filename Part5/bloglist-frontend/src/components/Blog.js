@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import blogService from '../services/blogs'
-const Blog = ({blog, setBlogs, blogs}) =>{
+const Blog = ({ blog, setBlogs, blogs, user, setErrorStatus, setMessage }) => {
   const [detailsVisible, setDetailsVisible] = useState(false)
   const blogStyle = {
     paddingTop: 10,
@@ -27,13 +27,26 @@ const Blog = ({blog, setBlogs, blogs}) =>{
     )
   }
 
-  const buttonLabel = detailsVisible ? "hide": "view"
-  const displayDetails = {display: detailsVisible ? "": "none"}
-  console.log(blog)
+  const handleRemove = async () => {
+    window.confirm(`Delete ${blog.title} by ${blog.author}?`) && deleteFunction(blog.id)
+  }
+
+  const deleteFunction = async (id) => {
+    await blogService.deleteOne(id)
+    setBlogs(blogs.filter((blog) => blog.id !== id))
+    setMessage('successfully deleted')
+    setErrorStatus(false)
+    setTimeout(() => {
+      setMessage(null)
+    }, 5000)
+  }
+
+  const buttonLabel = detailsVisible ? 'hide': 'view'
+  const displayDetails = { display: detailsVisible ? '': 'none' }
   return (
     <div style={blogStyle}>
       <div>
-        {blog.title} {blog.author} <button onClick={()=> setDetailsVisible(!detailsVisible)}>{buttonLabel}</button>
+        {blog.title} {blog.author} <button onClick={ () => setDetailsVisible(!detailsVisible)}>{buttonLabel}</button>
       </div>
       <div style={displayDetails}>
         {blog.url}
@@ -44,8 +57,13 @@ const Blog = ({blog, setBlogs, blogs}) =>{
       <div style={displayDetails}>
         {blog.user.name}
       </div>
-    </div>  
-)
+      <div style={displayDetails}>
+        { user.username === blog.user.username ?
+          <button id='remove' onClick={handleRemove}>remove</button> : null
+        }
+      </div>
+    </div>
+  )
 }
 
 export default Blog

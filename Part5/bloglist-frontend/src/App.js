@@ -11,7 +11,7 @@ const App = () => {
   const [message, setMessage] = useState(null)
   const [errorStatus, setErrorStatus] = useState(false)
   const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('') 
+  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
   const blogFormRef = useRef()
@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -31,29 +31,31 @@ const App = () => {
     }
   }, [])
 
-  const logout = () => { 
+  const logout = () => {
     window.localStorage.clear()
     setUser(null)
   }
 
+  const compare = (blog1, blog2) => blog2.likes - blog1.likes
+
   return (
     <div>
-      
       <h2>blogs</h2>
       <Notification message={message} errorStatus={errorStatus} />
       {user === null ?
-      <LoginForm  setErrorMessage = {setMessage} setErrorStatus={setErrorStatus} user={user} username={username} password={password} setUser={setUser} setPassword={setPassword} setUsername={setUsername}/> :
-      <div>
-        <p>{user.name} logged in</p>
-        <button onClick={logout}>logout</button>
-        <Togglable buttonLabel="Create new blog" ref={blogFormRef}>
-          <BlogForm blogFormRef={blogFormRef} setMessage={setMessage} setErrorStatus={setErrorStatus} blogs={blogs} setBlogs={setBlogs}/>
-        </Togglable>
-        {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} setBlogs={setBlogs} blogs={blogs} />
+        <LoginForm  setErrorMessage = {setMessage} setErrorStatus={setErrorStatus}  username={username} password={password} setUser={setUser} setPassword={setPassword} setUsername={setUsername}/> :
+        <div>
+          <p>{user.name} logged in</p>
+          <button onClick={logout}>logout</button>
+          <Togglable buttonLabel="Create new blog" ref={blogFormRef}>
+            <BlogForm blogFormRef={blogFormRef} setMessage={setMessage} setErrorStatus={setErrorStatus} blogs={blogs} setBlogs={setBlogs}/>
+          </Togglable>
+          { blogs.sort(compare) &&
+        blogs.map(blog =>
+          <Blog key={blog.id} user={user} blog={blog} setBlogs={setBlogs} blogs={blogs} setErrorStatus={setErrorStatus} setMessage={setMessage} />
         )
-        }
-      </div>
+          }
+        </div>
       }
     </div>
   )
