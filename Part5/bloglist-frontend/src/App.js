@@ -36,8 +36,7 @@ const App = () => {
     setUser(null)
   }
 
-  const likeClick = async (event, blog) => {
-    event.preventDefault()
+  const likeClick = async (blog) => {
     const newBlog = {
       ...blog,
       likes: blog.likes+1
@@ -63,8 +62,7 @@ const App = () => {
     }, 5000)
   }
 
-  const handleCreateBlog = async (event, title, author, url) => {
-    event.preventDefault()
+  const handleCreateBlog = async (title, author, url) => {
     blogFormRef.current.toggleVisibility()
     try{
       const newObject = {
@@ -92,15 +90,15 @@ const App = () => {
 
   return (
     <div>
-      <h2>blogs</h2>
-      <Notification message={message} errorStatus={errorStatus} />
+      <h2 data-testid='title-blogs'>blogs</h2>
+      <Notification  message={message} errorStatus={errorStatus} />
       {user === null ?
         <LoginForm  setErrorMessage = {setMessage} setErrorStatus={setErrorStatus}  username={username} password={password} setUser={setUser} setPassword={setPassword} setUsername={setUsername}/> :
         <div>
           <p>{user.name} logged in</p>
-          <button onClick={logout}>logout</button>
+          <button data-testid='logout-button' onClick={logout}>logout</button>
           <Togglable buttonLabel="Create new blog" ref={blogFormRef}>
-            <BlogForm createBlog={handleCreateBlog}/>
+            <BlogForm handleCreateBlog={handleCreateBlog}/>
           </Togglable>
           { blogs.sort(compare) &&
         blogs.map(blog =>

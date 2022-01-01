@@ -27,7 +27,7 @@ const Notification = ({ message, errorStatus }) => {
   }
 
   return (
-    <div style={currStyle} className="error">
+    <div data-testid='message' style={currStyle} className="error">
       {message}
     </div>
   )
